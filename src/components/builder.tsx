@@ -1,39 +1,51 @@
 import { randomId } from "@/lib/utils";
 import { Button } from "./ui/button";
-import { Card } from "./ui/card";
 import { Container } from "./ui/container";
 import { Form } from "./ui/form";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 // import * as builderComponents from "./ui";
 
 const builderComponents: any = {
-  button: Button,
-  card: Card,
-  container: Container,
-  //   form: Form,
-  input: Input,
-  label: Label,
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Container,
+  Input,
+  Label,
 };
 
 function Section({ children, settings, ...props }: any) {
-  const Comp = builderComponents[props._type] || builderComponents.container;
+  const Comp =
+    builderComponents[props._component] || builderComponents.container;
 
   if (children && children.length) {
     return (
       <Comp {...settings} {...props}>
-        <Builder model={children} />
+        <Builder layout={children} />
       </Comp>
     );
   }
   return <Comp {...settings} {...props} />;
 }
 
-function Builder({ model }: any) {
+function Builder({ layout }: any) {
   return (
     <>
-      {model.map(({ key, ...props }: any) => {
-        const uniqueKey = key || randomId(props._type);
+      {layout.map(({ key, ...props }: any) => {
+        const uniqueKey = key || randomId(props._component);
         return <Section key={uniqueKey} {...props} />;
       })}
     </>

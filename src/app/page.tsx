@@ -6,73 +6,18 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { UserAuthForm } from "@/components/patterns/login-form";
 import Builder from "@/components/builder";
-import { BuilderModel } from "@/types";
+import { BuilderLayout } from "@/types";
+import { LoginPage } from "@/pages/login";
 
-export const metadata: Metadata = {
-  title: "Authentication",
-  description: "Authentication forms built using the components.",
-};
+const SelectPage = LoginPage;
 
-const LoginPage: BuilderModel[] = [
-  {
-    _type: "container",
-    settings: {
-      variant: "hero",
-    },
-    children: [
-      {
-        _type: "container",
-        settings: {
-          variant: "half",
-          className: "bg-zinc-900",
-        },
-        children: [
-          {
-            _type: "container",
-            settings: {
-              variant: "float-to-center",
-              className: "bg-blue-900",
-            },
-            children: [
-              {
-                _type: "button",
-                settings: {
-                  label: "hello",
-                },
-              },
-              {
-                _type: "button",
-                settings: {
-                  dangerouslySetInnerHTML: {
-                    __html: "test",
-                  },
-                },
-              },
-            ],
-          },
-        ],
-      },
-      {
-        _type: "container",
-        settings: {
-          variant: "half",
-        },
-        children: [
-          {
-            _type: "button",
-            settings: {},
-          },
-        ],
-      },
-    ],
-  },
-];
+export const metadata: Metadata = SelectPage.metaData;
 
 export default function AuthenticationPage() {
   return (
     <>
-      <Builder model={LoginPage} />
-      {/* <div className=" w-1/2container  flex-grow relative hidden h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+      <Builder layout={SelectPage.layout} />
+      <div className=" bg-accent w-1/2container  flex-grow relative hidden h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
           href="/examples/authentication"
           className={cn(
@@ -83,7 +28,7 @@ export default function AuthenticationPage() {
           Login
         </Link>
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-          <div className="absolute inset-0 bg-zinc-900" />
+          <div className="absolute inset-0  bg-secondary" />
           <div className="relative z-20 flex items-center text-lg font-medium">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +85,7 @@ export default function AuthenticationPage() {
             </p>
           </div>
         </div>
-      </div> */}
+      </div>
     </>
   );
 }
