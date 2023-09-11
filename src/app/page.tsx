@@ -6,13 +6,14 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { UserAuthForm } from "@/components/patterns/login-form";
 import Builder from "@/components/builder";
+import { BuilderModel } from "@/types";
 
 export const metadata: Metadata = {
   title: "Authentication",
   description: "Authentication forms built using the components.",
 };
 
-const LoginPage = [
+const LoginPage: BuilderModel[] = [
   {
     _type: "container",
     settings: {
@@ -27,7 +28,27 @@ const LoginPage = [
         },
         children: [
           {
-            _type: "button",
+            _type: "container",
+            settings: {
+              variant: "float-to-center",
+              className: "bg-blue-900",
+            },
+            children: [
+              {
+                _type: "button",
+                settings: {
+                  label: "hello",
+                },
+              },
+              {
+                _type: "button",
+                settings: {
+                  dangerouslySetInnerHTML: {
+                    __html: "test",
+                  },
+                },
+              },
+            ],
           },
         ],
       },
@@ -39,6 +60,7 @@ const LoginPage = [
         children: [
           {
             _type: "button",
+            settings: {},
           },
         ],
       },
