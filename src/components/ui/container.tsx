@@ -4,23 +4,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
+const commonStyles = {
+  flex: " flex justify-center align-middle items-center",
+};
+
 const containerVariants = cva("", {
   variants: {
     variant: {
-      default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-      fullscreen: "flex h-screen",
+      default: "h-full w-full".concat(commonStyles.flex),
+      hero: "min-h-screen w-100".concat(commonStyles.flex),
+      half: "w-1/2 h-100 w-100 min-h-screen flex-grow min-h-screen".concat(
+        commonStyles.flex
+      ),
     },
-    // size: {
-    //   default: "h-9 px-4 py-2",
-    //   sm: "h-8 rounded-md px-3 text-xs",
-    //   lg: "h-10 rounded-md px-8",
-    //   icon: "h-9 w-9",
-    // },
   },
-  defaultVariants: {
-    variant: "default",
-    // size: "default",
-  },
+  defaultVariants: {},
 });
 
 export interface ContainerProps
@@ -30,12 +28,12 @@ export interface ContainerProps
 }
 
 const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  ({ className, variant, asChild = false, ...props }, ref) => {
+  ({ asChild = false, className, variant, ...props }, ref) => {
     const Comp = asChild ? Slot : "div";
 
     return (
       <Comp
-        className={cn(containerVariants({ variant, className }))}
+        className={cn(containerVariants({ className, variant }))}
         ref={ref}
         {...props}
       />

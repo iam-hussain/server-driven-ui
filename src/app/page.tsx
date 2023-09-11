@@ -16,18 +16,31 @@ const LoginPage = [
   {
     _type: "container",
     settings: {
-      variant: "fullscreen",
+      variant: "hero",
     },
     children: [
       {
         _type: "container",
         settings: {
-          variant: "center",
+          variant: "half",
+          className: "bg-zinc-900",
         },
+        children: [
+          {
+            _type: "button",
+          },
+        ],
       },
       {
-        _type: "input",
-        settings: {},
+        _type: "container",
+        settings: {
+          variant: "half",
+        },
+        children: [
+          {
+            _type: "button",
+          },
+        ],
       },
     ],
   },
@@ -37,7 +50,7 @@ export default function AuthenticationPage() {
   return (
     <>
       <Builder model={LoginPage} />
-      <div className="container relative hidden h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+      {/* <div className=" w-1/2container  flex-grow relative hidden h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
           href="/examples/authentication"
           className={cn(
@@ -105,7 +118,7 @@ export default function AuthenticationPage() {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
