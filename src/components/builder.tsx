@@ -16,18 +16,17 @@ const builderComponents: any = {
   label: Label,
 };
 
-function Section({ model }: any) {
-  const { key, children, ...props } = model;
-  const Comp = builderComponents[model._type] || builderComponents.container;
+function Section({ children, settings, ...props }: any) {
+  const Comp = builderComponents[props._type] || builderComponents.container;
 
-  if (model.children && model.children.length) {
+  if (children && children.length) {
     return (
-      <Comp {...model.settings}>
-        <Builder model={model.children} />
+      <Comp {...settings} {...props}>
+        <Builder model={children} />
       </Comp>
     );
   }
-  return <Comp {...props} />;
+  return <Comp {...settings} {...props} />;
 }
 
 function Builder({ model }: any) {
@@ -35,7 +34,7 @@ function Builder({ model }: any) {
     <>
       {model.map(({ key, ...props }: any) => {
         const uniqueKey = key || randomId(props._type);
-        return <Section model={props} key={uniqueKey} />;
+        return <Section key={uniqueKey} {...props} />;
       })}
     </>
   );
